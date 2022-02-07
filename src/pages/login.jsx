@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Box, 
   Container, 
   TextField, 
@@ -7,14 +7,12 @@ import { Box,
   Paper, 
   Button } from '@mui/material';
 
+import { loginUser } from '../redux/actions';
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const moveToHome = () => {
-    navigate("/");
-  }
+  const dispatch = useDispatch();
 
   return (
     <Container maxWidth="sm" >
@@ -51,7 +49,7 @@ function Login() {
             onChange={(e)=>{setPassword(e.target.value)}}
           />
         </div>
-        <Button onClick={moveToHome} variant="contained" fullWidth>Login</Button>
+        <Button onClick={() => dispatch(loginUser(username, password))} variant="contained" fullWidth>Login</Button>
       </Box>
       </Paper>
     </Container>

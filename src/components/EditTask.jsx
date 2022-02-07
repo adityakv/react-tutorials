@@ -1,22 +1,25 @@
 import React from 'react';
-import { Modal } from '@mui/material';
+import {
+  Modal
+} from '@mui/material';
 
 import TaskModalContent from './TaskModalContent';
 
-
-function CreateTask({
+function EditTask({
   open,
   openAction,
-  createTask,
+  editTask,
+  title,
+  body
 }) {
   return (
     <Modal
       open={open}
       onClose={() => {openAction(false)}}
     >
-      <TaskModalContent onClick={createTask}/>
+      <TaskModalContent onClick={editTask} title={title} body={body} isEditMode={true}/>
     </Modal>
   )
 }
 
-export default CreateTask;
+export default EditTask;
