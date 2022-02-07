@@ -14,12 +14,19 @@ if (process.env.NODE_ENV === 'development') {
 };
 
 const savedTodos = localStorage.getItem('todos');
-const persistedStore = savedTodos ? { todos: JSON.parse(savedTodos)} : { todos: [] };
+const login = sessionStorage.getItem('todo-username');
+
+
+
+const persistedStore = login ? 
+    (savedTodos ? { todos: JSON.parse(savedTodos), isloggedIn: true, userName: login } : { todos: JSON.parse(savedTodos)}) 
+    : { todos: [] };
 
 const store = createStore(reducer, persistedStore, composeEnhancers(applyMiddleware(...middleware)));
 
 store.subscribe(() => {
     localStorage.setItem('todos', JSON.stringify(store.getState().todos));
+    sessionStorage.setItem('todo-username', store.getState().userName);
 });
 
 export default store;

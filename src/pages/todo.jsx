@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, 
   Container, 
@@ -27,8 +27,24 @@ function Todo() {
 
   const handleCreateTask = (title, body) => {
     setIsOpen(false)
-    dispatch(createTask(todos.length + 1, title, body));
+    dispatch(createTask(Math.random().toString(16).slice(2), title, body));
   }
+
+  useEffect(() => {
+    if (search.length < 2) setFilterdTodos(...todos);
+
+    let filterTodo = [];
+
+    todos.forEach(todo => {
+      if (todo.title.toLowerCase().includes(search.toLowerCase())) {
+        filterTodo.push(todo);
+      } else if (todo.body.toLowerCase().includes(search.toLowerCase())) {
+        filterTodo.push(todo);
+      }
+    });
+
+    setFilterdTodos(filterTodo);
+  }, [todos])
 
   const onSearchClick = () => {
     if (search.length < 2) setFilterdTodos(...todos);

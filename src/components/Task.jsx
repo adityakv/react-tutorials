@@ -18,11 +18,10 @@ const buttonStyle = {
   width: '20px'
 }
 
-function Task( { task: { id, title, body } }) {
+function Task( { task: { id, title, body, isDone } }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const isDone = useSelector(state => state.todos.find(todo => todo.id === id).isDone);
 
   const handleDelete = () => {
     dispatch(deleteTask(id));
