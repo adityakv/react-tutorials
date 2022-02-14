@@ -58,3 +58,9 @@ export const deleteTask = (id) => {
     }
   }
 }
+
+export const logout = () => {
+  return {
+    type: actions.LOGOUT
+  }
+}

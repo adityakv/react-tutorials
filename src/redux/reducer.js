@@ -46,6 +46,13 @@ const reducer = (state = INTIAL_STATE, action) => {
       ...state,
       todos: [...state.todos.filter(todo => todo.id !== payload.id)]
     }
+
+    case actions.LOGOUT: return {
+      ...state,
+      isloggedIn: false,
+      userName: ''
+    }
+    
     default: return state;
   }
 }

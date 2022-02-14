@@ -3,5 +3,6 @@ export const actions = {
   CREATE_TASK: "createTask",
   DELETE_TASK: "deleteTask",
   EDIT_TASK: "editTask",
-  COMPLETE_TASK: "completeTask"
+  COMPLETE_TASK: "completeTask",
+  LOGOUT: "logout",
 }

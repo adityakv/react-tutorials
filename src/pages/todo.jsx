@@ -13,7 +13,7 @@ import { Box,
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { createTask } from '../redux/actions';
+import { createTask, logout } from '../redux/actions';
 
 import CreateTask from '../components/CreateTask';
 import Task from '../components/Task';
@@ -22,6 +22,7 @@ function Todo() {
   const [search, setSearch] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const todos = useSelector(state => state.todos);
+  const username = useSelector(state => state.userName);
   const [filtredTodos, setFilterdTodos] = useState(todos);
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ function Todo() {
     });
 
     setFilterdTodos(filterTodo);
-  }, [todos])
+  }, [todos, search])
 
   const onSearchClick = () => {
     if (search.length < 2) setFilterdTodos(...todos);
@@ -64,6 +65,10 @@ function Todo() {
 
   return (
     <Container maxWidth="lg">
+      <Box sx={{position: 'relative', top: '100px', textTransform: 'capitalize', display: 'flex', justifyContent: 'space-between'}}>
+        <Typography variant="h4">Welcome: { username }</Typography>
+        <Button variant='text' size='large' onClick={() => {dispatch(logout())}}>Logout</Button>
+      </Box>
       <Paper sx={{padding: '30px', position: 'relative', top: '100px'}}>
         <OutlinedInput 
           fullWidth
