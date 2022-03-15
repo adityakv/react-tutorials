@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Route, Navigate, Routes } from 'react-router-dom';
 
 import Login from './pages/login';
+import LoginClass from './pages/loginClass';
 import Todo from './pages/todo';
 
 function App() {
-  const isloggedIn = useSelector(state => state.isloggedIn)
+  const isloggedIn = useSelector((state) => state.isloggedIn)
   return (
     <div className="App">
       <Routes>

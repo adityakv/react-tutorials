@@ -10,10 +10,17 @@ export const login = (user) => {
 }
 
 export const loginUser = (user, password) => {
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(login(user))
-    }, 1000)
+  return async dispatch => {
+    const rawResponse = await fetch('https://httpbin.org/post', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({user, password})
+  });
+  const content = await rawResponse.json();
+  dispatch(login(user));
   }
 }
 
